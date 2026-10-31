@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Arvision — Company Pamphlet</title>
+<style>
+  :root {
+    --navy: #0b1220;
+    --navy-2: #121a2e;
+    --accent: #2563eb;
+    --accent-2: #38bdf8;
+    --text: #334155;
+    --muted: #64748b;
+    --border: #e2e8f0;
+  }
+
+  * { box-sizing: border-box; }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 210mm;
+    height: 297mm;
+    font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+    color: var(--text);
+    background: #ffffff;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ---------- header ---------- */
+  .header {
+    background: linear-gradient(120deg, var(--navy) 0%, var(--navy-2) 55%, #0e2a52 100%);
+    padding: 11mm 14mm 9mm;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40mm;
+    right: -30mm;
+    width: 110mm;
+    height: 110mm;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(56,189,248,0.35), transparent 70%);
+  }
+  .header-top {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 3.5mm;
+  }
+  .brand img { height: 15mm; width: auto; }
+  .brand-name {
+    font-size: 19pt;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    background: linear-gradient(90deg, #ffffff, var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1;
+  }
+  .brand-tag {
+    font-size: 7.5pt;
+    letter-spacing: 2.5px;
+    color: #93a5c4;
+    margin-top: 1.5mm;
+    text-transform: uppercase;
+  }
+  .header-contact {
+    text-align: right;
+    font-size: 8.3pt;
+    color: #cbd5e1;
+    line-height: 1.9;
+  }
+  .header-contact strong { color: #fff; }
+
+  .hero {
+    position: relative;
+    margin-top: 10mm;
+  }
+  .hero h1 {
+    margin: 0;
+    font-size: 26pt;
+    line-height: 1.18;
+    font-weight: 800;
+    color: #ffffff;
+    max-width: 140mm;
+  }
+  .hero h1 span {
+    background: linear-gradient(90deg, var(--accent-2), #818cf8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p {
+    margin: 4mm 0 0;
+    font-size: 10pt;
+    line-height: 1.6;
+    color: #b7c3dc;
+    max-width: 128mm;
+  }
+
+  /* ---------- body ---------- */
+  .body {
+    padding: 9mm 14mm 0;
+    flex: 1;
+  }
+
+  .section-label {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1.5mm;
+  }
+  .section-title {
+    font-size: 15pt;
+    font-weight: 800;
+    color: var(--navy);
+    margin: 0 0 5mm;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5mm;
+  }
+  .service-card {
+    border: 0.4mm solid var(--border);
+    border-radius: 3mm;
+    padding: 5mm;
+    background: linear-gradient(160deg, #f8fafc, #ffffff);
+  }
+  .service-icon {
+    width: 10mm;
+    height: 10mm;
+    border-radius: 2.6mm;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3mm;
+  }
+  .service-icon svg { width: 5.2mm; height: 5.2mm; }
+  .service-card h3 {
+    margin: 0 0 1.5mm;
+    font-size: 9.6pt;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .service-card p {
+    margin: 0;
+    font-size: 7.8pt;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+
+  /* ---------- stats ---------- */
+  .stats {
+    margin-top: 9mm;
+    background: linear-gradient(100deg, var(--navy), #0e2a52);
+    border-radius: 3.5mm;
+    padding: 6mm 4mm;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+  }
+  .stats .stat + .stat { border-left: 0.3mm solid rgba(255,255,255,0.15); }
+  .stat strong {
+    display: block;
+    font-size: 15pt;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ffffff, var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .stat span {
+    display: block;
+    font-size: 7.3pt;
+    color: #9fb0ce;
+    margin-top: 1mm;
+  }
+
+  /* ---------- why us ---------- */
+  .why-wrap {
+    margin-top: 9mm;
+    display: grid;
+    grid-template-columns: 62mm 1fr;
+    gap: 8mm;
+    align-items: start;
+  }
+  .why-wrap .copy p {
+    font-size: 8.6pt;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0;
+  }
+  .why-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5mm 6mm;
+  }
+  .why-item {
+    display: flex;
+    gap: 2.5mm;
+    align-items: flex-start;
+  }
+  .why-item .dot {
+    width: 4mm;
+    height: 4mm;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 0.6mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .why-item .dot svg { width: 2.4mm; height: 2.4mm; }
+  .why-item div strong {
+    display: block;
+    font-size: 8.6pt;
+    color: var(--navy);
+    font-weight: 700;
+  }
+  .why-item div span {
+    font-size: 7.6pt;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* ---------- footer ---------- */
+  .footer {
+    margin-top: auto;
+    background: var(--navy);
+    padding: 7mm 14mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer .f-brand {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+  .footer .f-brand img { height: 8mm; }
+  .footer .f-brand span {
+    color: #fff;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+  .footer .f-contact {
+    display: flex;
+    gap: 7mm;
+    font-size: 7.6pt;
+    color: #b7c3dc;
+  }
+  .footer .f-contact b { color: #fff; font-weight: 600; }
+  .footer .f-cta {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    color: #fff;
+    font-size: 8pt;
+    font-weight: 700;
+    padding: 2.6mm 6mm;
+    border-radius: 20mm;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <div class="header-top">
+        <div class="brand">
+          <img src="assets/logo-icon.png" alt="Arvision" />
+          <div>
+            <div class="brand-name">ARVISION</div>
+            <div class="brand-tag">Our Vision</div>
+          </div>
+        </div>
+        <div class="header-contact">
+          <div><strong>hello@arvision.tech</strong></div>
+          <div>+1 (555) 012-3456 &nbsp;·&nbsp; arvision.tech</div>
+        </div>
+      </div>
+
+      <div class="hero">
+        <h1>Engineering the Future Through <span>Intelligent Vision</span></h1>
+        <p>
+          Arvision is a technology company building AI, ERP, and software solutions
+          that help ambitious businesses see further, move faster, and compete smarter.
+        </p>
+      </div>
+    </div>
+
+    <div class="body">
+      <p class="section-label">What We Do</p>
+      <p class="section-title">Full-Spectrum Technology Services</p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" stroke-linecap="round"/></svg>
+          </div>
+          <h3>AI &amp; Machine Learning</h3>
+          <p>Custom AI models, predictive analytics, and intelligent automation that turn data into advantage.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v14c0 1.7 3.1 3 7 3s7-1.3 7-3V5"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>
+          </div>
+          <h3>ERP Systems</h3>
+          <p>Custom ERP solutions that unify inventory, finance, HR, and operations into one system.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-5 6 5 6M16 6l5 6-5 6"/></svg>
+          </div>
+          <h3>Web &amp; Mobile Dev</h3>
+          <p>Scalable, high-performance web and mobile applications built with modern frameworks.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a6 6 0 1 1 1.3-11.9A5 5 0 0 1 19.6 10a4.2 4.2 0 0 1-2.1 9Z"/></svg>
+          </div>
+          <h3>Cloud &amp; DevOps</h3>
+          <p>Cloud architecture, CI/CD pipelines, and infrastructure automation that scales with you.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.4 8 11 4.6-2.6 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3>Cybersecurity</h3>
+          <p>End-to-end security audits, threat monitoring, and compliance-ready infrastructure.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 2Z"/></svg>
+          </div>
+          <h3>IT Consulting</h3>
+          <p>Technology roadmaps and digital transformation strategy tailored to your growth stage.</p>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><strong>50+</strong><span>Projects Delivered</span></div>
+        <div class="stat"><strong>30+</strong><span>Global Clients</span></div>
+        <div class="stat"><strong>5+</strong><span>Years Experience</span></div>
+        <div class="stat"><strong>24/7</strong><span>Dedicated Support</span></div>
+      </div>
+
+      <div class="why-wrap">
+        <div class="copy">
+          <p class="section-label">Why Arvision</p>
+          <p class="section-title" style="margin-bottom:2mm;">A Partner That Sees the Whole Picture</p>
+          <p>We don't just ship code — we build technology aligned with your business, your users, and where you're headed next.</p>
+        </div>
+        <div class="why-list">
+          <div class="why-item">
+            <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div><strong>Vision-Driven Approach</strong><span>Every build maps to a measurable outcome.</span></div>
+          </div>
+          <div class="why-item">
+            <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div><strong>Expert Engineering Team</strong><span>Senior engineers and designers on every project.</span></div>
+          </div>
+          <div class="why-item">
+            <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div><strong>Transparent Process</strong><span>Clear timelines and honest communication.</span></div>
+          </div>
+          <div class="why-item">
+            <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div><strong>Built to Scale</strong><span>From early MVP to enterprise infrastructure.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="f-brand">
+        <img src="assets/logo-icon.png" alt="" />
+        <span>ARVISION</span>
+      </div>
+      <div class="f-contact">
+        <div><b>Email</b> hello@arvision.tech</div>
+        <div><b>Phone</b> +1 (555) 012-3456</div>
+        <div><b>Web</b> arvision.tech</div>
+      </div>
+      <div class="f-cta">Let's Build Together</div>
+    </div>
+  </div>
+</body>
+</html>
