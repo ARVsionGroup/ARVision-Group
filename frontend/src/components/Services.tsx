@@ -2,6 +2,7 @@ import { ArrowUpRight, BrainCircuit, Cloud, Code2, Database, type LucideIcon, Li
 import { useInView } from '../hooks/use-in-view'
 import { useTypewriter } from '../hooks/use-typewriter'
 import { ServiceVisual, type ServiceVisualVariant } from './ServiceVisual'
+import { Reveal } from './Reveal'
 
 interface Service {
   icon: LucideIcon
@@ -55,6 +56,24 @@ const SERVICES: Service[] = [
   },
 ]
 
+const ENGAGEMENTS = [
+  {
+    title: 'Plan the next move',
+    description:
+      'Clarify the problem, review existing systems, and decide which opportunities are worth pursuing first.',
+  },
+  {
+    title: 'Build what is needed',
+    description:
+      'Create a new product, connect business tools, or extend an existing platform around your priorities.',
+  },
+  {
+    title: 'Improve what is in place',
+    description:
+      'Modernize workflows, strengthen reliability, and adapt technology as your team and requirements evolve.',
+  },
+]
+
 function ServiceCard({ service, index }: { service: Service; index: number }) {
   const { ref, inView } = useInView<HTMLDivElement>()
 
@@ -63,7 +82,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
       ref={ref}
       className={`group relative overflow-hidden rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1.5 hover:border-[var(--accent-border)] hover:shadow-[var(--shadow)] ${
         inView ? 'animate-reveal-up' : 'opacity-0'
-      }`}
+      } motion-reduce:animate-none motion-reduce:opacity-100`}
       style={{ animationDelay: inView ? `${index * 90}ms` : undefined }}
     >
       <ServiceVisual variant={service.variant} />
@@ -168,6 +187,39 @@ export function Services() {
           {SERVICES.map((service, index) => (
             <ServiceCard key={service.title} service={service} index={index} />
           ))}
+        </div>
+
+        <div className="mt-20 border-t border-border pt-12">
+          <Reveal className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">
+              Flexible engagement
+            </p>
+            <h3 className="mt-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+              Meet your business where it is
+            </h3>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              You do not need to start with a complete transformation plan.
+              Begin with a focused challenge and shape the next steps around
+              what your organization actually needs.
+            </p>
+          </Reveal>
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
+            {ENGAGEMENTS.map((engagement, index) => (
+              <Reveal key={engagement.title} delay={index * 100}>
+                <article className="h-full rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent-border)] hover:shadow-[var(--shadow)]">
+                  <span className="text-sm font-semibold text-[var(--accent)]">
+                    0{index + 1}
+                  </span>
+                  <h4 className="mt-3 font-semibold text-foreground">
+                    {engagement.title}
+                  </h4>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {engagement.description}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -3,11 +3,18 @@ import { Mail, MapPin, Phone, Send } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { Reveal } from './Reveal'
 
 const CONTACT_INFO = [
   { icon: Mail, label: 'Email', value: 'hello@arvision.tech', href: 'mailto:hello@arvision.tech' },
   { icon: Phone, label: 'Phone', value: '+1 (555) 012-3456', href: 'tel:+15550123456' },
   { icon: MapPin, label: 'Office', value: 'Remote-first, serving clients worldwide', href: undefined },
+]
+
+const NEXT_STEPS = [
+  ['Share the context', 'Tell us about the challenge, the people involved, and what you hope to change.'],
+  ['Explore the options', 'We can discuss possible approaches, relevant services, and open questions.'],
+  ['Agree on a starting point', 'If there is a fit, define a focused scope and practical next steps together.'],
 ]
 
 export function Contact() {
@@ -29,7 +36,7 @@ export function Contact() {
   return (
     <section id="contact" className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
       <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr]">
-        <div>
+        <Reveal>
           <p className="text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">
             Get in touch
           </p>
@@ -44,7 +51,7 @@ export function Contact() {
           <ul className="mt-9 space-y-5">
             {CONTACT_INFO.map((item) => (
               <li key={item.label} className="flex items-start gap-3.5">
-                <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-[var(--accent-bg)] text-[var(--accent)]">
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-[var(--accent-bg)] text-[var(--accent)] transition-transform duration-300 hover:rotate-6 hover:scale-110">
                   <item.icon className="size-4.5" />
                 </span>
                 <div>
@@ -63,51 +70,86 @@ export function Contact() {
               </li>
             ))}
           </ul>
+        </Reveal>
+
+        <Reveal delay={100}>
+          <form
+            onSubmit={handleSubmit}
+            className="rounded-3xl border border-border bg-card p-7 shadow-[var(--shadow)] sm:p-9"
+          >
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="name" className="text-sm font-medium text-foreground">
+                  Name
+                </label>
+                <Input id="name" name="name" placeholder="Your name" required />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="email" className="text-sm font-medium text-foreground">
+                  Email
+                </label>
+                <Input id="email" name="email" type="email" placeholder="you@company.com" required />
+              </div>
+            </div>
+
+            <div className="mt-5 flex flex-col gap-2">
+              <label htmlFor="message" className="text-sm font-medium text-foreground">
+                Project details
+              </label>
+              <Textarea
+                id="message"
+                name="message"
+                rows={5}
+                placeholder="Tell us about your project, timeline, and goals..."
+                required
+              />
+            </div>
+
+            <Button type="submit" size="lg" className="mt-6 w-full sm:w-auto">
+              Send message
+              <Send className="size-4" />
+            </Button>
+
+            {sent && (
+              <p className="mt-4 text-sm text-muted-foreground">
+                Opening your email client to send the message — we'll be in touch soon.
+              </p>
+            )}
+          </form>
+        </Reveal>
+      </div>
+
+      <div className="mt-20 border-t border-border pt-12">
+        <Reveal className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">
+            What to expect
+          </p>
+          <h3 className="mt-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+            A useful first conversation, without the pressure
+          </h3>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            A little context helps us make the conversation more relevant. Share
+            what you can, and we can work through the details together.
+          </p>
+        </Reveal>
+        <div role="list" className="mt-8 grid gap-5 md:grid-cols-3">
+          {NEXT_STEPS.map(([title, description], index) => (
+            <Reveal key={title} delay={index * 100}>
+              <article
+                role="listitem"
+                className="h-full rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow)]"
+              >
+                <span className="text-sm font-semibold text-[var(--accent)]">
+                  0{index + 1}
+                </span>
+                <h4 className="mt-3 font-semibold text-foreground">{title}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {description}
+                </p>
+              </article>
+            </Reveal>
+          ))}
         </div>
-
-        <form
-          onSubmit={handleSubmit}
-          className="rounded-3xl border border-border bg-card p-7 shadow-[var(--shadow)] sm:p-9"
-        >
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="flex flex-col gap-2">
-              <label htmlFor="name" className="text-sm font-medium text-foreground">
-                Name
-              </label>
-              <Input id="name" name="name" placeholder="Your name" required />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="email" className="text-sm font-medium text-foreground">
-                Email
-              </label>
-              <Input id="email" name="email" type="email" placeholder="you@company.com" required />
-            </div>
-          </div>
-
-          <div className="mt-5 flex flex-col gap-2">
-            <label htmlFor="message" className="text-sm font-medium text-foreground">
-              Project details
-            </label>
-            <Textarea
-              id="message"
-              name="message"
-              rows={5}
-              placeholder="Tell us about your project, timeline, and goals..."
-              required
-            />
-          </div>
-
-          <Button type="submit" size="lg" className="mt-6 w-full sm:w-auto">
-            Send message
-            <Send className="size-4" />
-          </Button>
-
-          {sent && (
-            <p className="mt-4 text-sm text-muted-foreground">
-              Opening your email client to send the message — we'll be in touch soon.
-            </p>
-          )}
-        </form>
       </div>
     </section>
   )

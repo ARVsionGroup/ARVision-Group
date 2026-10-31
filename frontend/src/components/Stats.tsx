@@ -15,7 +15,7 @@ function StatItem({ stat, index }: { stat: (typeof STATS)[number]; index: number
   return (
     <div
       ref={ref}
-      className={`group text-center transition-transform duration-300 hover:-translate-y-1 ${
+      className={`group text-center transition-transform duration-300 hover:-translate-y-1 motion-reduce:animate-none motion-reduce:opacity-100 ${
         inView ? 'animate-reveal-up' : 'opacity-0'
       }`}
       style={{ animationDelay: `${index * 100}ms` }}

@@ -104,14 +104,14 @@ export function Hero() {
             className="mt-9 flex animate-reveal-up flex-wrap items-center gap-4"
             style={{ animationDelay: '240ms' }}
           >
-            <Button size="lg" render={<a href="#contact" />} nativeButton={false}>
+            <Button size="lg" render={<a href="/contact" />} nativeButton={false}>
               Start a project
               <ArrowRight className="size-4" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              render={<a href="#services" />}
+              render={<a href="/services" />}
               nativeButton={false}
             >
               Explore services

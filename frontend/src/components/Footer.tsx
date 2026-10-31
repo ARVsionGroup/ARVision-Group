@@ -1,6 +1,7 @@
 import { AtSign, Briefcase, Camera, Terminal } from 'lucide-react'
 import logoIcon from '../assets/logo-icon.png'
 import { TaperLine } from './TaperLine'
+import { Reveal } from './Reveal'
 
 const SOCIAL_LINKS = [
   { icon: Terminal, label: 'GitHub', href: '#' },
@@ -11,16 +12,17 @@ const SOCIAL_LINKS = [
 
 const FOOTER_LINKS = {
   Company: [
-    { label: 'About', href: '#about' },
-    { label: 'Services', href: '#services' },
-    { label: 'Why Us', href: '#why-us' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', href: '/' },
+    { label: 'About', href: '/about' },
+    { label: 'Services', href: '/services' },
+    { label: 'Why Us', href: '/why-us' },
+    { label: 'Contact', href: '/contact' },
   ],
   Services: [
-    { label: 'AI & Machine Learning', href: '#services' },
-    { label: 'ERP Systems', href: '#services' },
-    { label: 'Web & Mobile Apps', href: '#services' },
-    { label: 'Cloud & DevOps', href: '#services' },
+    { label: 'AI & Machine Learning', href: '/services' },
+    { label: 'ERP Systems', href: '/services' },
+    { label: 'Web & Mobile Apps', href: '/services' },
+    { label: 'Cloud & DevOps', href: '/services' },
   ],
 }
 
@@ -31,8 +33,8 @@ export function Footer() {
     <footer className="border-t border-border bg-muted/30">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr_1fr]">
-          <div>
-            <div className="flex items-center gap-0">
+          <Reveal>
+            <a href="/" className="flex items-center gap-0">
               <img src={logoIcon} alt="" className="h-9 w-auto -mr-2" />
               <span className="flex flex-col items-center leading-tight">
                 <span className="block bg-gradient-to-r from-[var(--text-h)] via-[var(--accent)] to-sky-400 bg-clip-text text-lg font-extrabold tracking-tight text-transparent">
@@ -44,7 +46,7 @@ export function Footer() {
                   <TaperLine flip />
                 </span>
               </span>
-            </div>
+            </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
               Engineering the future through intelligent vision — AI, ERP, and
               software that moves your business forward.
@@ -62,24 +64,24 @@ export function Footer() {
                 </a>
               ))}
             </div>
-          </div>
+          </Reveal>
 
           {Object.entries(FOOTER_LINKS).map(([heading, links]) => (
-            <div key={heading}>
+            <Reveal key={heading} delay={heading === 'Company' ? 100 : 200}>
               <h3 className="text-sm font-semibold text-foreground">{heading}</h3>
               <ul className="mt-4 space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="inline-block text-sm text-muted-foreground transition-all duration-200 hover:translate-x-1 hover:text-foreground"
                     >
                       {link.label}
                     </a>
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
           ))}
         </div>
 

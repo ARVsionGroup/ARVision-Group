@@ -1,6 +1,7 @@
 import { Layers, ShieldCheck, Target, Users } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useInView } from '../hooks/use-in-view'
+import { Reveal } from './Reveal'
 
 interface Reason {
   icon: LucideIcon
@@ -36,6 +37,24 @@ const REASONS: Reason[] = [
   },
 ]
 
+const PARTNERSHIP_POINTS = [
+  {
+    title: 'A shared understanding',
+    description:
+      'We align on the problem, priorities, and what a useful outcome looks like before the build begins.',
+  },
+  {
+    title: 'Visible progress',
+    description:
+      'Work is broken into clear stages so you can review direction, share feedback, and make informed decisions.',
+  },
+  {
+    title: 'A considered handover',
+    description:
+      'We keep the people who will operate the solution in mind, with attention to documentation and maintainability.',
+  },
+]
+
 function ReasonItem({ reason, index }: { reason: Reason; index: number }) {
   const { ref, inView } = useInView<HTMLDivElement>()
 
@@ -44,7 +63,7 @@ function ReasonItem({ reason, index }: { reason: Reason; index: number }) {
       ref={ref}
       className={`group flex gap-4 rounded-2xl p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-card hover:shadow-[var(--shadow)] ${
         inView ? 'animate-reveal-up' : 'opacity-0'
-      }`}
+      } motion-reduce:animate-none motion-reduce:opacity-100`}
       style={{ animationDelay: `${index * 120}ms` }}
     >
       <div className="flex flex-col items-center">
@@ -87,6 +106,36 @@ export function WhyChooseUs() {
         <div className="grid gap-4 sm:grid-cols-2">
           {REASONS.map((reason, index) => (
             <ReasonItem key={reason.title} reason={reason} index={index} />
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-20 border-t border-border pt-12">
+        <Reveal className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">
+            A thoughtful partnership
+          </p>
+          <h3 className="mt-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+            Good delivery is about more than the code
+          </h3>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            The way a solution is planned, reviewed, and handed over matters
+            just as much as the technology behind it.
+          </p>
+        </Reveal>
+        <div className="mt-8 grid gap-5 md:grid-cols-3">
+          {PARTNERSHIP_POINTS.map((point, index) => (
+            <Reveal key={point.title} delay={index * 100}>
+              <article className="h-full rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow)]">
+                <p className="text-sm font-semibold text-[var(--accent)]">
+                  0{index + 1}
+                </p>
+                <h4 className="mt-3 font-semibold text-foreground">{point.title}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {point.description}
+                </p>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>

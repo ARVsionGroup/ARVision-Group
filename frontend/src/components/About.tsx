@@ -3,6 +3,7 @@ import type { CSSProperties } from 'react'
 import logoFull from '../assets/logo-full.png'
 import { useInView } from '../hooks/use-in-view'
 import { ParticleField } from './ParticleField'
+import { Reveal } from './Reveal'
 
 const POINTS = [
   { label: 'Innovation-first engineering mindset', tone: 'text-[var(--accent)] bg-[var(--accent)]/10' },
@@ -34,7 +35,7 @@ export function About() {
       <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
         <div
           ref={imgRef}
-          className={`relative mx-auto w-full max-w-sm py-6 lg:max-w-none ${imgInView ? 'animate-reveal-up' : 'opacity-0'}`}
+          className={`relative mx-auto w-full max-w-sm py-6 motion-reduce:animate-none motion-reduce:opacity-100 lg:max-w-none ${imgInView ? 'animate-reveal-up' : 'opacity-0'}`}
         >
           <span className="absolute -left-10 -top-10 size-36 rounded-full bg-[var(--accent)]/25 blur-3xl animate-float-slow" />
           <span
@@ -105,7 +106,7 @@ export function About() {
           ))}
         </div>
 
-        <div ref={textRef} className={textInView ? 'animate-reveal-up' : 'opacity-0'} style={{ animationDelay: '150ms' }}>
+        <div ref={textRef} className={`${textInView ? 'animate-reveal-up' : 'opacity-0'} motion-reduce:animate-none motion-reduce:opacity-100`} style={{ animationDelay: '150ms' }}>
           <p className="text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">
             Who we are
           </p>
@@ -139,6 +140,63 @@ export function About() {
               </li>
             ))}
           </ul>
+        </div>
+      </div>
+
+      <div className="mt-20 grid gap-5 border-t border-border pt-12 md:grid-cols-2 lg:mt-24">
+        <Reveal>
+          <article className="h-full rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow)] sm:p-8">
+            <p className="text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">
+              Our mission
+            </p>
+            <h3 className="mt-3 text-xl font-semibold text-foreground">
+              Make technology useful to the people who rely on it
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              We bring together thoughtful engineering and a clear understanding
+              of business needs to create practical, dependable digital solutions.
+            </p>
+          </article>
+        </Reveal>
+        <Reveal delay={100}>
+          <article className="h-full rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow)] sm:p-8">
+            <p className="text-sm font-semibold uppercase tracking-wider text-[var(--accent)]">
+              Our vision
+            </p>
+            <h3 className="mt-3 text-xl font-semibold text-foreground">
+              A future where better tools make room for better ideas
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              We see technology as a way to help teams spend less time on friction
+              and more time building, serving, and moving forward.
+            </p>
+          </article>
+        </Reveal>
+      </div>
+
+      <div className="mt-16">
+        <h3 className="text-2xl font-semibold tracking-tight text-foreground">
+          Principles behind the work
+        </h3>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            ['Start with people', 'Understand the teams and customers who will use what we build.'],
+            ['Keep it practical', 'Choose technology for its fit and value, not just because it is new.'],
+            ['Build with care', 'Consider reliability, security, and maintainability from the start.'],
+            ['Learn as we go', 'Use feedback and changing needs to guide thoughtful improvements.'],
+          ].map(([title, description], index) => (
+            <Reveal key={title} delay={index * 90}>
+              <article className="h-full rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow)]">
+                <p className="text-xs font-semibold uppercase tracking-wider text-[var(--accent)]">
+                  0{index + 1}
+                </p>
+                <h4 className="mt-3 font-semibold text-foreground">{title}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {description}
+                </p>
+              </article>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
