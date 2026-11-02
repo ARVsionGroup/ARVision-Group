@@ -91,7 +91,7 @@ function WebVisual() {
   return (
     <div className="relative size-full">
       <div className="absolute inset-0 right-6">
-        <MockWindow title="arvision.tech">
+        <MockWindow title="arvision.in">
           <div className="flex h-full flex-col gap-1.5">
             <div
               className="h-full w-full rounded-md"
