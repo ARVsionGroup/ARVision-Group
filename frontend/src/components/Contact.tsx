@@ -3,10 +3,11 @@ import { Mail, MapPin, Phone, Send } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { CONTACT_EMAIL } from '@/lib/site-config'
 import { Reveal } from './Reveal'
 
 const CONTACT_INFO = [
-  { icon: Mail, label: 'Email', value: 'hello@arvision.tech', href: 'mailto:hello@arvision.tech' },
+  { icon: Mail, label: 'Email', value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
   { icon: Phone, label: 'Phone', value: '+1 (555) 012-3456', href: 'tel:+15550123456' },
   { icon: MapPin, label: 'Office', value: 'Remote-first, serving clients worldwide', href: undefined },
 ]
@@ -29,7 +30,7 @@ export function Contact() {
 
     const subject = encodeURIComponent(`Project inquiry from ${name || 'website visitor'}`)
     const body = encodeURIComponent(`${message}\n\nFrom: ${name} <${email}>`)
-    window.location.href = `mailto:hello@arvision.tech?subject=${subject}&body=${body}`
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
     setDraftPrepared(true)
   }
 
