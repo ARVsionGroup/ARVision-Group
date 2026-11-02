@@ -17,10 +17,12 @@ const LINK_GROUPS = [
   {
     title: 'What we do',
     links: [
-      { label: 'AI & machine learning', href: '/services' },
-      { label: 'ERP systems', href: '/services' },
-      { label: 'Web & mobile apps', href: '/services' },
-      { label: 'Cloud & DevOps', href: '/services' },
+      { label: 'AI & machine learning', href: '/services/ai-machine-learning' },
+      { label: 'ERP systems', href: '/services/erp-systems' },
+      { label: 'Web & mobile apps', href: '/services/web-mobile-development' },
+      { label: 'Cloud & DevOps', href: '/services/cloud-devops' },
+      { label: 'Cybersecurity', href: '/services/cybersecurity' },
+      { label: 'IT consulting & strategy', href: '/services/it-consulting-strategy' },
     ],
   },
 ]

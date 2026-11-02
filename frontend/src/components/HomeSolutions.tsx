@@ -4,6 +4,7 @@ import { Reveal } from './Reveal'
 const SOLUTIONS = [
   {
     icon: BrainCircuit,
+    href: '/services/ai-machine-learning',
     title: 'Make better use of data',
     description:
       'Bring AI, analytics, and automation into everyday work to help your team make informed decisions.',
@@ -11,6 +12,7 @@ const SOLUTIONS = [
   },
   {
     icon: Database,
+    href: '/services/erp-systems',
     title: 'Connect business operations',
     description:
       'Shape ERP and internal systems around the way your people manage finance, inventory, and operations.',
@@ -18,6 +20,7 @@ const SOLUTIONS = [
   },
   {
     icon: PanelsTopLeft,
+    href: '/services/web-mobile-development',
     title: 'Create useful digital products',
     description:
       'Design and build responsive web and mobile experiences that are ready to evolve with your needs.',
@@ -45,7 +48,7 @@ export function HomeSolutions() {
         {SOLUTIONS.map((solution, index) => (
           <Reveal key={solution.title} delay={index * 100}>
             <a
-              href="/services"
+              href={solution.href}
               className="group block rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent-border)] hover:shadow-[var(--shadow)]"
             >
               <span className="flex size-11 items-center justify-center rounded-xl bg-[var(--accent-bg)] text-[var(--accent)] transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110">

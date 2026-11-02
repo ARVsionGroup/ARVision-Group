@@ -5,12 +5,14 @@ export function Reveal({
   children,
   className = '',
   delay = 0,
+  threshold,
 }: {
   children: ReactNode
   className?: string
   delay?: number
+  threshold?: number
 }) {
-  const { ref, inView } = useInView<HTMLDivElement>()
+  const { ref, inView } = useInView<HTMLDivElement>(threshold)
 
   return (
     <div
