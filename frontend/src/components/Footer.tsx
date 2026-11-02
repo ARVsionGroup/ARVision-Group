@@ -1,5 +1,5 @@
 import { ArrowRight, ArrowUp, ArrowUpRight, Mail, Phone } from 'lucide-react'
-import { CONTACT_EMAIL } from '@/lib/site-config'
+import { CONTACT_EMAIL, CONTACT_PHONES } from '@/lib/site-config'
 import logoIcon from '../assets/logo-icon.png'
 import { TaperLine } from './TaperLine'
 import { Reveal } from './Reveal'
@@ -219,15 +219,17 @@ export function Footer() {
                   {CONTACT_EMAIL}
                 </a>
               </li>
-              <li>
-                <a
-                  href="tel:+15550123456"
-                  className="group/contact inline-flex items-center gap-3 text-sm text-white/70 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-300"
-                >
-                  <Phone className="size-4 text-sky-300 transition-transform group-hover/contact:rotate-6" />
-                  +1 (555) 012-3456
-                </a>
-              </li>
+              {CONTACT_PHONES.map((phone) => (
+                <li key={phone.value}>
+                  <a
+                    href={phone.href}
+                    className="group/contact inline-flex items-center gap-3 text-sm text-white/70 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-300"
+                  >
+                    <Phone className="size-4 text-sky-300 transition-transform group-hover/contact:rotate-6" />
+                    {phone.value}
+                  </a>
+                </li>
+              ))}
             </ul>
           </Reveal>
         </div>
