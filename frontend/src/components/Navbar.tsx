@@ -17,6 +17,8 @@ export function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const currentPath = window.location.pathname.replace(/\/+$/, '') || '/'
+  const isCurrentPage = (href: string) =>
+    currentPath === href || (href === '/services' && currentPath.startsWith('/services/'))
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -53,9 +55,9 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              aria-current={currentPath === link.href ? 'page' : undefined}
+              aria-current={isCurrentPage(link.href) ? 'page' : undefined}
               className={`text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 hover:text-foreground ${
-                currentPath === link.href ? 'text-foreground' : 'text-muted-foreground'
+                isCurrentPage(link.href) ? 'text-foreground' : 'text-muted-foreground'
               }`}
             >
               {link.label}
@@ -90,9 +92,9 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              aria-current={currentPath === link.href ? 'page' : undefined}
+              aria-current={isCurrentPage(link.href) ? 'page' : undefined}
               className={`rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 hover:translate-x-1 hover:bg-muted hover:text-foreground ${
-                currentPath === link.href ? 'bg-muted text-foreground' : 'text-muted-foreground'
+                isCurrentPage(link.href) ? 'bg-muted text-foreground' : 'text-muted-foreground'
               }`}
             >
               {link.label}

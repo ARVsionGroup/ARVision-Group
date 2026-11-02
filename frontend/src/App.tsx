@@ -8,9 +8,11 @@ import { Hero } from './components/Hero'
 import { HomeSolutions } from './components/HomeSolutions'
 import { Navbar } from './components/Navbar'
 import { Services } from './components/Services'
+import { ServiceDetail } from './components/ServiceDetail'
 import { Stats } from './components/Stats'
 import { WhyChooseUs } from './components/WhyChooseUs'
 import { SITE_URL } from './lib/site-config'
+import { SERVICES } from './lib/services'
 import './App.css'
 
 const PAGE_METADATA: Record<string, { title: string; description: string }> = {
@@ -39,6 +41,15 @@ const PAGE_METADATA: Record<string, { title: string; description: string }> = {
     description:
       'Contact Arvision to discuss AI, ERP, or custom software projects and explore practical next steps with our team.',
   },
+  ...Object.fromEntries(
+    SERVICES.map((service) => [
+      `/services/${service.slug}`,
+      {
+        title: `${service.title} | Arvision`,
+        description: service.description,
+      },
+    ]),
+  ),
 }
 
 function setMetaTag(attribute: 'name' | 'property', key: string, content: string) {
@@ -110,12 +121,16 @@ function App() {
     ),
     '/contact': <Contact />,
   }[path]
+  const serviceSlug = path.startsWith('/services/') ? path.slice('/services/'.length) : ''
+  const servicePage = SERVICES.some((service) => service.slug === serviceSlug)
+    ? <ServiceDetail slug={serviceSlug} />
+    : undefined
 
   return (
     <div className="flex min-h-svh flex-col">
       <Navbar />
       <main className="flex-1">
-        {page ?? (
+        {page ?? servicePage ?? (
           <section className="mx-auto max-w-7xl px-6 py-24 text-center lg:px-8">
             <h1 className="text-3xl font-semibold text-foreground">Page not found</h1>
             <a
