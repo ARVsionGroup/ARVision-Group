@@ -18,7 +18,7 @@ const NEXT_STEPS = [
 ]
 
 export function Contact() {
-  const [sent, setSent] = useState(false)
+  const [draftPrepared, setDraftPrepared] = useState(false)
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -30,7 +30,7 @@ export function Contact() {
     const subject = encodeURIComponent(`Project inquiry from ${name || 'website visitor'}`)
     const body = encodeURIComponent(`${message}\n\nFrom: ${name} <${email}>`)
     window.location.href = `mailto:hello@arvision.tech?subject=${subject}&body=${body}`
-    setSent(true)
+    setDraftPrepared(true)
   }
 
   return (
@@ -110,9 +110,9 @@ export function Contact() {
               <Send className="size-4" />
             </Button>
 
-            {sent && (
-              <p className="mt-4 text-sm text-muted-foreground">
-                Opening your email client to send the message — we'll be in touch soon.
+            {draftPrepared && (
+              <p role="status" className="mt-4 text-sm text-muted-foreground">
+                Your email app should open with a draft. Review it and press Send to contact us.
               </p>
             )}
           </form>
