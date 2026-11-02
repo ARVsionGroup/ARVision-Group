@@ -3,12 +3,16 @@ import { Mail, MapPin, Phone, Send } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { CONTACT_EMAIL } from '@/lib/site-config'
+import { CONTACT_EMAIL, CONTACT_PHONES } from '@/lib/site-config'
 import { Reveal } from './Reveal'
 
 const CONTACT_INFO = [
   { icon: Mail, label: 'Email', value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
-  { icon: Phone, label: 'Phone', value: '+1 (555) 012-3456', href: 'tel:+15550123456' },
+  ...CONTACT_PHONES.map((phone, index) => ({
+    icon: Phone,
+    label: index === 0 ? 'Phone' : 'Alternate phone',
+    ...phone,
+  })),
   { icon: MapPin, label: 'Office', value: 'Remote-first, serving clients worldwide', href: undefined },
 ]
 
