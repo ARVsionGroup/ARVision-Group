@@ -86,9 +86,9 @@ export function Hero() {
             className="mt-6 animate-reveal-up text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-[56px] lg:leading-[1.08]"
             style={{ animationDelay: '80ms' }}
           >
-            Engineering the future through{' '}
+            AI, ERP &amp; software solutions for{' '}
             <span className="animate-gradient-breathe bg-gradient-to-r from-[var(--accent)] via-violet-500 to-sky-400 bg-clip-text text-transparent">
-              intelligent vision
+              ambitious businesses
             </span>
           </h1>
 
