@@ -376,6 +376,149 @@
   animation: reveal-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+@keyframes footer-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.footer-orbit {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: footer-orbit 36s linear infinite;
+}
+
+.footer-orbit-reverse {
+  animation-direction: reverse;
+  animation-duration: 48s;
+}
+
+@keyframes footer-light-flow {
+  to {
+    stroke-dashoffset: -160;
+  }
+}
+
+.footer-light-trail {
+  stroke-dasharray: 14 150;
+  animation: footer-light-flow 6s linear infinite;
+}
+
+.footer-light-trail-slow {
+  animation-duration: 9s;
+  animation-delay: -3s;
+}
+
+.footer-light-trail-reverse {
+  animation-direction: reverse;
+  animation-duration: 8s;
+  animation-delay: -2s;
+}
+
+@keyframes footer-glow-pulse {
+  0%, 100% {
+    opacity: 0.22;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.footer-energy-glow {
+  stroke-dasharray: 32 180;
+  animation: footer-light-flow 7s linear infinite, footer-glow-pulse 3.2s ease-in-out infinite;
+}
+
+@keyframes footer-spark-pulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(0.75);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+.footer-spark,
+.footer-node-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: footer-spark-pulse 2.8s ease-in-out infinite;
+}
+
+.footer-spark-delay-one {
+  animation-delay: -0.9s;
+}
+
+.footer-spark-delay-two {
+  animation-delay: -1.8s;
+}
+
+@keyframes footer-grid-drift {
+  to {
+    background-position: 48px 48px, 48px 48px;
+  }
+}
+
+.footer-grid-drift {
+  animation: footer-grid-drift 24s linear infinite;
+}
+
+@keyframes footer-ambient-float {
+  0%, 100% {
+    opacity: 0.35;
+    transform: translate3d(0, 0, 0) scale(0.92);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate3d(28px, -24px, 0) scale(1.12);
+  }
+}
+
+.footer-ambient-glow {
+  animation: footer-ambient-float 12s ease-in-out infinite;
+}
+
+.footer-ambient-glow-delay {
+  animation-delay: -6s;
+  animation-duration: 16s;
+}
+
+@keyframes footer-backdrop-flow {
+  to {
+    stroke-dashoffset: -220;
+  }
+}
+
+.footer-backdrop-trail {
+  fill: none;
+  stroke: #60a5fa;
+  stroke-dasharray: 10 70;
+  stroke-linecap: round;
+  stroke-width: 1.5;
+  animation: footer-backdrop-flow 14s linear infinite;
+}
+
+.footer-backdrop-trail-delay {
+  animation-delay: -5s;
+  animation-duration: 18s;
+  stroke: #a78bfa;
+}
+
+.footer-backdrop-trail-slow {
+  animation-delay: -9s;
+  animation-duration: 22s;
+  stroke: #38bdf8;
+}
+
+.footer-backdrop-node {
+  fill: #bae6fd;
+  animation: footer-spark-pulse 3.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
