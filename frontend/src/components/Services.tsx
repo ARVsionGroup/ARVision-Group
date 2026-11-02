@@ -1,60 +1,9 @@
-import { ArrowUpRight, BrainCircuit, Cloud, Code2, Database, type LucideIcon, Lightbulb, ShieldCheck } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
+import { SERVICES, type Service } from '../lib/services'
 import { useInView } from '../hooks/use-in-view'
 import { useTypewriter } from '../hooks/use-typewriter'
-import { ServiceVisual, type ServiceVisualVariant } from './ServiceVisual'
+import { ServiceVisual } from './ServiceVisual'
 import { Reveal } from './Reveal'
-
-interface Service {
-  icon: LucideIcon
-  variant: ServiceVisualVariant
-  title: string
-  description: string
-}
-
-const SERVICES: Service[] = [
-  {
-    icon: BrainCircuit,
-    variant: 'ai',
-    title: 'AI & Machine Learning',
-    description:
-      'Custom AI models, predictive analytics, and intelligent automation that turn your data into a competitive advantage.',
-  },
-  {
-    icon: Database,
-    variant: 'erp',
-    title: 'ERP Systems',
-    description:
-      'Custom ERP solutions that unify inventory, finance, HR, and operations into one reliable system of record.',
-  },
-  {
-    icon: Code2,
-    variant: 'web',
-    title: 'Web & Mobile Development',
-    description:
-      'Scalable, high-performance web and mobile applications engineered with modern frameworks and clean architecture.',
-  },
-  {
-    icon: Cloud,
-    variant: 'cloud',
-    title: 'Cloud & DevOps',
-    description:
-      'Cloud architecture, CI/CD pipelines, and infrastructure automation that scales reliably with your business.',
-  },
-  {
-    icon: ShieldCheck,
-    variant: 'security',
-    title: 'Cybersecurity',
-    description:
-      'End-to-end security audits, threat monitoring, and compliance-ready infrastructure to keep you protected.',
-  },
-  {
-    icon: Lightbulb,
-    variant: 'consulting',
-    title: 'IT Consulting & Strategy',
-    description:
-      'Technology roadmaps and digital transformation strategy tailored to your goals and growth stage.',
-  },
-]
 
 const ENGAGEMENTS = [
   {
@@ -75,11 +24,13 @@ const ENGAGEMENTS = [
 ]
 
 function ServiceCard({ service, index }: { service: Service; index: number }) {
-  const { ref, inView } = useInView<HTMLDivElement>()
+  const { ref, inView } = useInView<HTMLAnchorElement>()
 
   return (
-    <div
+    <a
       ref={ref}
+      href={`/services/${service.slug}`}
+      aria-label={`Explore ${service.title}`}
       className={`group relative overflow-hidden rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1.5 hover:border-[var(--accent-border)] hover:shadow-[var(--shadow)] ${
         inView ? 'animate-reveal-up' : 'opacity-0'
       } motion-reduce:animate-none motion-reduce:opacity-100`}
@@ -96,7 +47,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
         <ArrowUpRight className="size-4 -translate-x-1 text-[var(--accent)] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{service.description}</p>
-    </div>
+    </a>
   )
 }
 
