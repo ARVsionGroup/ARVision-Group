@@ -1,5 +1,6 @@
 import {
   Award,
+  Crown,
   BrainCircuit,
   ClipboardList,
   Cloud,
@@ -42,6 +43,7 @@ const BADGES = [
 type TeamMember = {
   image: string
   name: string
+  founder?: boolean
   label: string
   role: string
   icon: typeof Code2
@@ -63,6 +65,7 @@ const TEAM: TeamMember[] = [
   {
     image: founderOne,
     name: 'Abhilash Kumar Mishra',
+    founder: true,
     label: 'Engineering · Full-stack & AI',
     role: 'Software Engineer',
     icon: Code2,
@@ -134,6 +137,7 @@ const TEAM: TeamMember[] = [
   {
     image: founderThree,
     name: 'Gulshan Kumar Sinha',
+    founder: true,
     label: 'Engineering · Backend & AI',
     role: 'Software Engineer',
     icon: Server,
@@ -641,6 +645,12 @@ function TeamCard({ member, index }: { member: TeamMember; index: number }) {
       </div>
 
       <div className="mt-5 w-full text-center">
+        {member.founder && (
+          <span className="team-founder-badge relative mb-3 inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-gradient-to-r from-amber-300 via-yellow-400 to-orange-400 px-3.5 py-1 text-xs font-bold uppercase tracking-[0.18em] text-[#1a1200] shadow-[0_0_18px_rgba(251,191,36,0.45)]">
+            <Crown className="size-3.5" aria-hidden="true" />
+            Founder
+          </span>
+        )}
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-300">
           {member.label}
         </p>
