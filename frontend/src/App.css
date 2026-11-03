@@ -2103,3 +2103,265 @@
   transform: translateX(-120%);
   animation: team-chip-sweep 3.5s ease-in-out infinite;
 }
+
+@keyframes contact-frame-breathe {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(0.995);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+.contact-frame-gradient {
+  background: linear-gradient(120deg, rgb(56 189 248 / 0.72), rgb(139 92 246 / 0.42), rgb(34 211 238 / 0.72), rgb(56 189 248 / 0.72));
+  background-size: 300% 300%;
+  animation: contact-frame-breathe 5s ease-in-out infinite, contact-gradient-flow 9s ease-in-out infinite;
+}
+
+.contact-form-frame::before {
+  position: absolute;
+  z-index: -1;
+  inset: -14px;
+  border-radius: inherit;
+  background: conic-gradient(from 180deg, rgb(56 189 248 / 0.6), rgb(139 92 246 / 0.48), rgb(34 211 238 / 0.55), rgb(56 189 248 / 0.6));
+  content: '';
+  filter: blur(28px);
+  opacity: 0.35;
+  animation: contact-glow-orbit 12s linear infinite;
+}
+
+@keyframes contact-gradient-flow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes contact-glow-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes contact-heading-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-18px, 14px, 0);
+  }
+}
+
+.contact-heading-glow {
+  animation: contact-heading-drift 8s ease-in-out infinite alternate;
+}
+
+.dark .contact-form-frame iframe {
+  filter: invert(1) hue-rotate(180deg);
+  transition: filter 250ms ease;
+}
+
+.contact-side-panel {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .contact-form-layout {
+    grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.8fr);
+  }
+
+  .contact-side-panel {
+    position: sticky;
+    top: 7rem;
+    display: block;
+  }
+}
+
+.contact-side-panel {
+  isolation: isolate;
+  min-height: 46rem;
+  background:
+    radial-gradient(ellipse at 50% 24%, rgb(56 189 248 / 0.1), transparent 42%),
+    var(--card);
+}
+
+.contact-side-panel::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(155deg, transparent 42%, rgb(139 92 246 / 0.06), transparent 80%);
+  content: '';
+  animation: contact-panel-shimmer 8s ease-in-out infinite alternate;
+}
+
+.contact-orbit-art {
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 0 32px rgb(56 189 248 / 0.12));
+}
+
+.contact-orbit-art::before,
+.contact-orbit-art::after {
+  position: absolute;
+  width: 52%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgb(56 189 248 / 0.16);
+  content: '';
+  filter: blur(40px);
+  animation: contact-orbit-glow 4.5s ease-in-out infinite alternate;
+}
+
+.contact-orbit-art::after {
+  width: 36%;
+  background: rgb(139 92 246 / 0.2);
+  animation-delay: -2s;
+}
+
+.contact-orbit {
+  position: absolute;
+  width: 94%;
+  height: 94%;
+  border: 1px solid rgb(56 189 248 / 0.2);
+  border-radius: 50%;
+}
+
+.contact-orbit--outer {
+  border-top-color: rgb(56 189 248 / 0.9);
+  border-bottom-color: rgb(139 92 246 / 0.55);
+  animation: contact-orbit-spin 24s linear infinite;
+}
+
+.contact-orbit--middle {
+  width: 72%;
+  height: 72%;
+  border-right-color: rgb(139 92 246 / 0.8);
+  border-left-color: rgb(56 189 248 / 0.5);
+  animation: contact-orbit-spin 18s linear infinite reverse;
+}
+
+.contact-orbit--inner {
+  width: 48%;
+  height: 48%;
+  border-style: dashed;
+  border-color: rgb(56 189 248 / 0.35);
+  animation: contact-orbit-spin 30s linear infinite;
+}
+
+.contact-orbit-core {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 5.5rem;
+  height: 5.5rem;
+  place-items: center;
+  border: 1px solid rgb(125 211 252 / 0.45);
+  border-radius: 1.75rem;
+  background: linear-gradient(145deg, rgb(56 189 248 / 0.2), rgb(139 92 246 / 0.2));
+  box-shadow: 0 0 48px rgb(56 189 248 / 0.22), inset 0 0 24px rgb(255 255 255 / 0.06);
+  animation: contact-core-pulse 3.2s ease-in-out infinite;
+}
+
+.contact-orbit-node,
+.contact-orbit-satellite {
+  position: absolute;
+  z-index: 2;
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 2px solid var(--background);
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 16px rgb(56 189 248 / 0.8);
+}
+
+.contact-orbit-node--one {
+  top: 13%;
+  left: 28%;
+}
+
+.contact-orbit-node--two {
+  right: 12%;
+  bottom: 34%;
+  background: #a78bfa;
+  box-shadow: 0 0 16px rgb(167 139 250 / 0.8);
+}
+
+.contact-orbit-node--three {
+  bottom: 17%;
+  left: 30%;
+  width: 0.55rem;
+  height: 0.55rem;
+  background: #67e8f9;
+}
+
+.contact-orbit-satellite {
+  top: 50%;
+  left: 50%;
+  width: 0.65rem;
+  height: 0.65rem;
+  margin: -0.325rem;
+  animation: contact-satellite-orbit 14s linear infinite;
+}
+
+.contact-orbit-satellite--two {
+  width: 0.45rem;
+  height: 0.45rem;
+  margin: -0.225rem;
+  background: #c4b5fd;
+  box-shadow: 0 0 16px rgb(167 139 250 / 0.8);
+  animation-duration: 19s;
+  animation-direction: reverse;
+}
+
+@keyframes contact-orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes contact-satellite-orbit {
+  from {
+    transform: rotate(0deg) translateX(8.7rem);
+  }
+  to {
+    transform: rotate(360deg) translateX(8.7rem);
+  }
+}
+
+@keyframes contact-core-pulse {
+  0%, 100% {
+    transform: scale(0.96);
+    box-shadow: 0 0 32px rgb(56 189 248 / 0.15), inset 0 0 24px rgb(255 255 255 / 0.06);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 54px rgb(56 189 248 / 0.32), inset 0 0 24px rgb(255 255 255 / 0.12);
+  }
+}
+
+@keyframes contact-orbit-glow {
+  from {
+    opacity: 0.35;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 0.8;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes contact-panel-shimmer {
+  from {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0.8;
+    transform: translateY(-12px);
+  }
+}
